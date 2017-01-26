@@ -16,3 +16,17 @@ db = MySQLDatabase(db_config.get('db_name'),
 # our database and print them out.
 tables = db.get_available_tables()
 print tables
+
+# Get all the available columns for our
+# articles table and print them out
+columns = db.get_columns_for_table('articles')
+print columns
+
+columnsProfiles = db.get_columns_for_table('profiles')
+print columnsProfiles
+
+columnsOrders = db.get_columns_for_table('orders')
+print columnsOrders
+
+columnsArticles = db.get_columns_for_table('articles')
+print columnsArticles
