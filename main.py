@@ -78,7 +78,7 @@ print "--------------------------------------"
 for result in descending_results:
 	print result
 
-ascending_results = db.select('orders', order_asc='amount')
+ascending_results = db.select('orders', order_asc='amount', named_tuples=True)
 print "--------------------------------------"
 print "Ascending Results -"
 print "--------------------------------------"
