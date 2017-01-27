@@ -70,3 +70,17 @@ print "First 10 results"
 print "--------------------------------------"
 for result in limited_results:
 	print result
+
+descending_results = db.select('orders', order_desc='amount')
+print "--------------------------------------"
+print "Descending Results -"
+print "--------------------------------------"
+for result in descending_results:
+	print result
+
+ascending_results = db.select('orders', order_asc='amount')
+print "--------------------------------------"
+print "Ascending Results -"
+print "--------------------------------------"
+for result in ascending_results:
+	print result

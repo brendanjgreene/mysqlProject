@@ -112,6 +112,15 @@ class MySQLDatabase(object):
         if kwargs.has_key('limit'):
             sql_str += " LIMIT %s" % kwargs.get('limit')
 
+        # if there's an ORDER clause attached
+        # For this we need to do both ASC and DESC
+        if kwargs.has_key('order_asc'):
+            sql_str += " ORDER BY %s" % kwargs.get('order_asc')
+
+        # Now for order_desc
+        if kwargs.has_key('order_desc'):
+            sql_str += " ORDER BY %s DESC" % kwargs.get('order_desc')
+
         sql_str += ";"  # Finalise out SQL string
 
         cursor = self.db.cursor()
