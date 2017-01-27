@@ -47,5 +47,21 @@ db.update('profiles', where="person_id=%s" % person.id,
           address="1a another street")
 
 # Deleting a record
-person = db.select('people',named_tuples=True)[0]
+person = db.select('people', named_tuples=True)[0]
 db.delete('orders', person_id="=%s" % person.id, id="=1")
+
+# Challenge A:
+# Using the AVG(), select a person from your people table
+#  and get the average amount they spend and,
+#  at the same time, create a column that reads,
+#  first_name spends. Then print out the columns
+# to provide the answers in the terminal
+peopleavg = db.select('people', columns=["CONCAT(first_name, ' ', second_name)" \
+                                         " AS full_name", "AVG(amount)" \
+                                                          " AS avg_spend"],
+                      named_tuples=True, where="people.id=2",
+                      join="orders ON people.id=orders.person_id")
+
+for person in peopleavg:
+    print person.full_name, "spent on average ", person.avg_spend
+
