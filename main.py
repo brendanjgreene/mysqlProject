@@ -75,7 +75,7 @@ caroline = db.select('people', ["id", 'first_name'], where='first_name="Caroline
 db.insert('profiles', person_id="%s" % caroline.id, address="Turnings, Straffan")
 db.insert('orders', person_id="%s" % caroline.id, amount='%s' % random.randint(1,30))
 db.insert('orders', person_id="%s" % caroline.id, amount='%s' % random.randint(5,67))
-orders = db.select('orders', where='person_id=%s' %caroline.id)
+orders = db.select('orders', where='person_id=%s' % caroline.id)
 
 for order in orders:
     print order
@@ -94,6 +94,26 @@ print personCaroline
 
 # Challenge D:
 # Choose a person and update ALL of his orders to have the amount 20.02.
+
+tess = db.select('people', ["id", 'first_name'], where='first_name="Tess"', named_tuples=True)[0]
+print tess
+
+tess_orders = db.select('orders', named_tuples=True, where='person_id=%s' % tess.id)
+print tess_orders
+
+for order in tess_orders:
+    print order
+    db.update('orders', where="id=%s" % order.id, amount="20.02")
+
+new_tess_orders = db.select('orders', named_tuples=True, where='person_id=%s' % tess.id)
+
+for order in new_tess_orders:
+    print order
+
+# challenge E would cause all orders to be deleted
+
+
+
 
 
 
